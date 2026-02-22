@@ -7,18 +7,21 @@
   <meta name="description" content="Hochzeitseinladung – alle Infos, Ablauf & Kontakt." />
 
   <style>
-    :root{
-      --bg1:#fff7fb;
-      --bg2:#f2fbff;
-      --card:#ffffffcc;
-      --text:#1f2937;
-      --muted:#4b5563;
-      --accent:#ff6aa2;
-      --accent2:#35b6c7;
-      --ring:#ffffff;
-      --shadow: 0 12px 40px rgba(17, 24, 39, .12);
-      --radius: 22px;
-    }
+   :root{
+  --bg1:#f6fbf6;        /* sehr helles Mint */
+  --bg2:#fdfcf7;        /* warmes Creme */
+  --card:#ffffffcc;
+
+  --text:#2f3e2f;
+  --muted:#5f6f5f;
+
+  --accent:#a8d5a2;     /* Pastell Salbei */
+  --accent2:#cfe8c9;    /* sehr helles Grün */
+  --soft:#eaf6e7;       /* Hintergrund-Flächen */
+
+  --shadow: 0 12px 40px rgba(0, 0, 0, .08);
+  --radius: 22px;
+  }
 
     *{ box-sizing:border-box; }
     body{
@@ -26,10 +29,10 @@
       font-family: Georgia, serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 800px at 10% 5%, #ffe6f2 0%, transparent 60%),
-        radial-gradient(1000px 700px at 90% 0%, #e1fbff 0%, transparent 55%),
-        radial-gradient(900px 700px at 50% 100%, #fff2d6 0%, transparent 55%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
+      radial-gradient(1200px 800px at 10% 5%, rgba(168,213,162,.25) 0%, transparent 60%),
+      radial-gradient(1000px 700px at 90% 0%, rgba(207,232,201,.30) 0%, transparent 55%),
+      radial-gradient(900px 700px at 50% 100%, rgba(255,250,235,.50) 0%, transparent 55%),
+      linear-gradient(180deg, var(--bg1), var(--bg2));
       min-height:100vh;
     }
 
@@ -44,7 +47,7 @@
       overflow:hidden;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      background: linear-gradient(135deg, #fff, #fff7fb);
+      background: linear-gradient(135deg, #ffffff, var(--soft));
       border: 1px solid rgba(255,255,255,.65);
     }
 
@@ -60,16 +63,16 @@
     }
 
     .badge{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255, 106, 162, .12);
-      color: #b42360;
-      font-weight: 650;
-      width: fit-content;
-    }
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--accent);
+    color:#2f3e2f;
+    font-weight: 600;
+    width: fit-content;
+  }
 
     h1{
       font-size: clamp(30px, 4.2vw, 54px);
@@ -100,16 +103,16 @@
     }
 
     .pill{
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(53, 182, 199, .10);
-      border: 1px solid rgba(53, 182, 199, .22);
-      color: #0b6b78;
-      font-weight: 620;
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
+    padding: 10px 12px;
+    border-radius: 999px;
+    background: var(--accent2);
+    border: 1px solid #dcefd8;
+    color: #3a4a3a;
+    font-weight: 600;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
 
     .card{
       margin-top: 16px;
@@ -172,15 +175,15 @@
     }
 
     .time{
-      font-weight: 800;
-      color:#0f172a;
-      background: rgba(255,106,162,.12);
-      border: 1px solid rgba(255,106,162,.20);
-      border-radius: 999px;
-      padding: 8px 10px;
-      text-align:center;
-      width: fit-content;
-    }
+    font-weight: 700;
+    color:#2f3e2f;
+    background: var(--soft);
+    border: 1px solid #dcefd8;
+    border-radius: 999px;
+    padding: 8px 10px;
+    text-align:center;
+    width: fit-content;
+   }
 
     .actions{
       display:flex;
@@ -206,16 +209,17 @@
     }
     .btn:active{ transform: translateY(1px); }
 
-    .btn.primary{
-      background: linear-gradient(135deg, var(--accent), #ff9ac2);
-      border-color: rgba(255,106,162,.35);
-      color: #fff;
+   .btn.primary{
+    background: linear-gradient(135deg, #a8d5a2, #cfe8c9);
+    border: 1px solid #cfe8c9;
+    color: #2f3e2f;
     }
-    .btn.secondary{
-      background: linear-gradient(135deg, var(--accent2), #7be2ee);
-      border-color: rgba(53,182,199,.35);
-      color: #063a42;
-    }
+
+  .btn.secondary{
+  background: #f4faf2;
+  border: 1px solid #dcefd8;
+  color: #2f3e2f;
+  }
 
     .note{
       font-size: .95rem;
