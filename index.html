@@ -1,10 +1,396 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Hochzeit</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hochzeitseinladung</title>
+  <meta name="description" content="Hochzeitseinladung – alle Infos, Ablauf & Kontakt." />
+
+  <style>
+    :root{
+      --bg1:#fff7fb;
+      --bg2:#f2fbff;
+      --card:#ffffffcc;
+      --text:#1f2937;
+      --muted:#4b5563;
+      --accent:#ff6aa2;
+      --accent2:#35b6c7;
+      --ring:#ffffff;
+      --shadow: 0 12px 40px rgba(17, 24, 39, .12);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% 5%, #ffe6f2 0%, transparent 60%),
+        radial-gradient(1000px 700px at 90% 0%, #e1fbff 0%, transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, #fff2d6 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 16px 60px;
+    }
+
+    .hero{
+      position: relative;
+      overflow:hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: linear-gradient(135deg, #fff, #fff7fb);
+      border: 1px solid rgba(255,255,255,.65);
+    }
+
+    .hero-inner{
+      padding: 22px 18px 18px;
+      display:grid;
+      gap: 14px;
+      align-items:center;
+    }
+
+    @media (min-width: 780px){
+      .hero-inner{ grid-template-columns: 1.2fr .8fr; padding: 30px 28px; }
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 106, 162, .12);
+      color: #b42360;
+      font-weight: 650;
+      width: fit-content;
+    }
+
+    h1{
+      font-size: clamp(30px, 4.2vw, 54px);
+      line-height: 1.05;
+      margin: 6px 0 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .names{
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-weight: 650;
+    }
+
+    .sub{
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 58ch;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 8px;
+    }
+
+    .pill{
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(53, 182, 199, .10);
+      border: 1px solid rgba(53, 182, 199, .22);
+      color: #0b6b78;
+      font-weight: 620;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .card{
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.70);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      padding: 14px;
+    }
+
+    @media (min-width: 780px){
+      .grid{ grid-template-columns: 1fr 1fr; padding: 18px; gap: 18px; }
+    }
+
+    .section{
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.75);
+    }
+
+    .section h2{
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .section p, .section li{
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0.25rem 0;
+    }
+
+    .timeline{
+      list-style:none;
+      padding:0;
+      margin: 10px 0 0;
+      display:grid;
+      gap:10px;
+    }
+
+    .item{
+      display:grid;
+      grid-template-columns: 92px 1fr;
+      gap: 10px;
+      align-items:start;
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(17,24,39,.06);
+    }
+
+    .time{
+      font-weight: 800;
+      color:#0f172a;
+      background: rgba(255,106,162,.12);
+      border: 1px solid rgba(255,106,162,.20);
+      border-radius: 999px;
+      padding: 8px 10px;
+      text-align:center;
+      width: fit-content;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+
+    .btn{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(17,24,39,.10);
+      background: #fff;
+      color: #111827;
+      text-decoration:none;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(17,24,39,.10);
+      transition: transform .08s ease;
+    }
+    .btn:active{ transform: translateY(1px); }
+
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), #ff9ac2);
+      border-color: rgba(255,106,162,.35);
+      color: #fff;
+    }
+    .btn.secondary{
+      background: linear-gradient(135deg, var(--accent2), #7be2ee);
+      border-color: rgba(53,182,199,.35);
+      color: #063a42;
+    }
+
+    .note{
+      font-size: .95rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    footer{
+      margin-top: 16px;
+      text-align:center;
+      color: rgba(75,85,99,.95);
+      font-size: .9rem;
+    }
+
+    /* Dekorative „Blumen“-Ecken (SVG) */
+    .flowers{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.9;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Wir heiraten!</h1>
+  <div class="wrap">
+    <header class="hero">
+      <!-- dezentes Blumen-Dekor -->
+      <svg class="flowers" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ff6aa2" stop-opacity=".22"/>
+            <stop offset="1" stop-color="#35b6c7" stop-opacity=".18"/>
+          </linearGradient>
+        </defs>
+
+        <!-- oben links -->
+        <g transform="translate(70 70)">
+          <circle r="36" fill="url(#g1)"/>
+          <g fill="#ff9ac2" fill-opacity=".35">
+            <circle cx="0" cy="-55" r="16"/><circle cx="52" cy="-15" r="16"/>
+            <circle cx="32" cy="45" r="16"/><circle cx="-32" cy="45" r="16"/>
+            <circle cx="-52" cy="-15" r="16"/>
+          </g>
+          <circle r="10" fill="#fff" fill-opacity=".7"/>
+        </g>
+
+        <!-- unten rechts -->
+        <g transform="translate(1090 420)">
+          <circle r="44" fill="url(#g1)"/>
+          <g fill="#7be2ee" fill-opacity=".32">
+            <circle cx="0" cy="-70" r="18"/><circle cx="65" cy="-20" r="18"/>
+            <circle cx="42" cy="60" r="18"/><circle cx="-42" cy="60" r="18"/>
+            <circle cx="-65" cy="-20" r="18"/>
+          </g>
+          <circle r="12" fill="#fff" fill-opacity=".7"/>
+        </g>
+
+        <!-- leichte Sprenkel -->
+        <g fill="#ff6aa2" fill-opacity=".10">
+          <circle cx="240" cy="120" r="6"/><circle cx="320" cy="170" r="5"/>
+          <circle cx="920" cy="120" r="6"/><circle cx="860" cy="210" r="5"/>
+          <circle cx="600" cy="80" r="4"/><circle cx="590" cy="470" r="4"/>
+        </g>
+      </svg>
+
+      <div class="hero-inner">
+        <div>
+          <div class="badge">🌸 Hochzeitseinladung</div>
+          <h1 class="names">[Name] &amp; [Name]</h1>
+          <p class="sub">
+            Wir freuen uns riesig, diesen besonderen Tag mit euch zu feiern.
+            Hier findet ihr alle Infos auf einen Blick – Ablauf, Ort und Kontakt.
+          </p>
+
+          <div class="pill-row">
+            <div class="pill">📅 <span><strong>[Datum]</strong> (z. B. 12.07.2026)</span></div>
+            <div class="pill">📍 <span><strong>[Ort]</strong> (z. B. Berlin)</span></div>
+            <div class="pill">🕒 <span><strong>[Uhrzeit]</strong> (z. B. 14:00)</span></div>
+          </div>
+
+          <div class="actions">
+            <!-- Ersetze die Links -->
+            <a class="btn primary" href="[Google-Maps-Link]" target="_blank" rel="noopener">🗺️ Route öffnen</a>
+            <a class="btn secondary" href="https://wa.me/[DEINENUMMER]?text=Hallo%20%F0%9F%8C%B8%20wir%20freuen%20uns%20auf%20die%20Hochzeit!%20Wir%20haben%20eine%20Frage:%20" target="_blank" rel="noopener">💬 WhatsApp</a>
+          </div>
+
+          <p class="note">Tipp: Den WhatsApp-Link oben anpassen: Telefonnummer im Format 4917… (ohne + und ohne Leerzeichen).</p>
+        </div>
+
+        <div class="section">
+          <h2>💛 Ein paar liebe Worte</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main class="card">
+      <div class="grid">
+        <section class="section">
+          <h2>🗓️ Ablauf</h2>
+          <ul class="timeline">
+            <li class="item">
+              <div class="time">14:00</div>
+              <div>
+                <strong>Ankommen &amp; Begrüßung</strong>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+            </li>
+            <li class="item">
+              <div class="time">15:00</div>
+              <div>
+                <strong>Trauung</strong>
+                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </li>
+            <li class="item">
+              <div class="time">16:00</div>
+              <div>
+                <strong>Sektempfang &amp; Fotos</strong>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+              </div>
+            </li>
+            <li class="item">
+              <div class="time">18:00</div>
+              <div>
+                <strong>Essen &amp; Reden</strong>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+              </div>
+            </li>
+            <li class="item">
+              <div class="time">20:00</div>
+              <div>
+                <strong>Party</strong>
+                <p>Excepteur sint occaecat cupidatat non proident — let’s dance!</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>ℹ️ Infos</h2>
+          <p><strong>Dresscode:</strong> Sommerlich &amp; festlich (helle Farben gern gesehen 🌼)</p>
+          <p><strong>Geschenke:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p><strong>Allergien/Essenswünsche:</strong> Bitte kurz per WhatsApp melden.</p>
+
+          <h2 style="margin-top:14px;">📌 Hinweise</h2>
+          <p>Bitte kommt möglichst pünktlich. Parken/Anfahrt: Lorem ipsum dolor sit amet.</p>
+          <p>Fotos willkommen – wir freuen uns über eure Lieblingsmomente!</p>
+
+          <div class="actions" style="margin-top:12px;">
+            <!-- Optional: Kalenderlink (einfach ersetzen) -->
+            <a class="btn" href="[Kalender-Link]" target="_blank" rel="noopener">📆 In Kalender speichern</a>
+            <!-- Optional: PDF/Programm (falls du später hochlädst) -->
+            <a class="btn" href="#" onclick="alert('Optional: Hier könnt ihr später z.B. eine PDF-Datei verlinken.'); return false;">📄 Mehr Details</a>
+          </div>
+
+          <p class="note">Wenn du keine Buttons willst: einfach die jeweiligen <code>&lt;a&gt;</code>-Zeilen löschen.</p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      🌸 Wir freuen uns auf euch! · <span id="year"></span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
